@@ -3,7 +3,6 @@ export function getSearchResultsContainerStyle():{}{
     width:'35%',
     overflowY:'scroll',
     // height:'100px',
-    maxHeight:'400px',
     marginTop:'0%',
     borderBottomLeftRadius:'8%',
     borderBottomRightRadius:'8%',

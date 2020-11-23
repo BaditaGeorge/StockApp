@@ -42,7 +42,7 @@ export function produceChartData(symbol:string,symbolData:IStockData):IChartData
 
 export function mapSearchResults(data:Array<ISymbol>,setSymbolData:any){
     function createResultElement(symbol:ISymbol,index:number){
-        return <div key={index} onClick={(e)=>{setSymbolData(symbol);}} style={getSearchResultStyle()}>{symbol.description}({symbol.notation})</div>;
+        return <div key={index} onMouseDown={()=>{setSymbolData(symbol);}} style={getSearchResultStyle()}>{symbol.description}({symbol.notation})</div>;
     }
     return data.map(createResultElement);
 }
