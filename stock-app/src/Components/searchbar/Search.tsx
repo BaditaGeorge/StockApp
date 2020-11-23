@@ -2,7 +2,7 @@ import React,{useRef,useState,useEffect, Dispatch, SetStateAction} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import {retrieveApiData} from '../../utility/ApiData';
-import {createSearchResults,mapSearchResults} from '../../utility/ProcessData';
+import {createSearchResults,mapSearchResults,extractSymbol} from '../../utility/ProcessData';
 import { createImportSpecifier } from 'typescript';
 import {ISymbol} from '../../models/StockDataInterfaces';
 import {getSearchResultsContainerStyle,getTextFieldContainerStyle,getTextFieldStyle} from '../../styles/SearchStyle';
@@ -31,7 +31,7 @@ export function Search({setSymbolData}:{setSymbolData:Dispatch<SetStateAction<IS
         setSearchContent(e.target.value);
     };
     let [isFocused,setIsFocused] = useState(false);
-    let cont = <div style={getSearchResultsContainerStyle()}>{mapSearchResults(searchResults,setSymbolData)}</div>;
+    let cont = <div onMouseDown={(e:any)=>{setSymbolData(extractSymbol(e.target.textContent));}} style={getSearchResultsContainerStyle()}>{mapSearchResults(searchResults)}</div>;
     if(isFocused === true){
         return (
             <div>

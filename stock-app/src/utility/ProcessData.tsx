@@ -40,9 +40,15 @@ export function produceChartData(symbol:string,symbolData:IStockData):IChartData
     return chartData;
 }
 
-export function mapSearchResults(data:Array<ISymbol>,setSymbolData:any){
+export function mapSearchResults(data:Array<ISymbol>){
     function createResultElement(symbol:ISymbol,index:number){
-        return <div key={index} onMouseDown={()=>{setSymbolData(symbol);}} style={getSearchResultStyle()}>{symbol.description}({symbol.notation})</div>;
+        return <div key={index} defaultValue={symbol.notation} style={getSearchResultStyle()}>{symbol.description}({symbol.notation})</div>;
     }
     return data.map(createResultElement);
+}
+
+export function extractSymbol(content:string):ISymbol{
+    let indexOf:number = content.indexOf('(');
+    let leng:number = content.length;
+    return {description:content.slice(0,indexOf).trim(),notation:content.slice(indexOf+1,leng-1).trim()};
 }
